@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>50 題線上測驗</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+}
+.box {
+    background:white;
+    max-width:700px;
+    margin:30px auto;
+    padding:20px;
+    border-radius:8px;
+}
+.option {
+    margin:8px 0;
+}
+button {
+    margin-top:20px;
+    padding:10px 20px;
+    font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h3 id="question"></h3>
+
+    <div class="option"><input type="radio" name="ans" value="A"> A</div>
+    <div class="option"><input type="radio" name="ans" value="B"> B</div>
+    <div class="option"><input type="radio" name="ans" value="C"> C</div>
+    <div class="option"><input type="radio" name="ans" value="D"> D</div>
+
+    <button onclick="next()">下一題</button>
+    <p id="count"></p>
+</div>
+
+<script>
+const quiz = [
+{q:"下列哪一個項目不屬於田徑短距離跑正式比賽項目？",a:"C"},
+{q:"田徑 4×100 公尺接力跑項目，傳接棒需在幾公尺的接力區內進行？",a:"D"},
+{q:"下列哪一個起跑口令，並非田徑短距離跑正式口令",a:"A"},
+{q:"田徑接力跑傳接棒時，裁判依據什麼判定是否超出接力區？",a:"D"},
+{q:"田徑短跑運動員手臂屈肘約成多少度擺動？",a:"D"},
+{q:"4×100 公尺速度最快者適合擔任第幾棒？",a:"D"},
+{q:"4×100 公尺彎道跑技術較好者適合擔任第幾棒？",a:"C"},
+{q:"4×100 公尺常用的傳接棒方式？",a:"B"},
+{q:"4×400 公尺常用的傳接棒方式？",a:"A"},
+{q:"短距離跑放鬆技術主要是指何者的放鬆？",a:"C"},
+{q:"徑賽衝線名次判定依據？",a:"B"},
+{q:"接力賽掉棒應由誰撿起？",a:"A"},
+{q:"起跑鳴槍前犯規的處置？",a:"D"},
+{q:"籃球強邊防守目標？",a:"C"},
+{q:"籃球弱邊防守目標？",a:"C"},
+{q:"三對三半場先得幾分獲勝？",a:"B"},
+{q:"籃球中的強邊是？",a:"C"},
+{q:"籃球中的弱邊是？",a:"D"},
+{q:"弱邊防守三角關係？",a:"D"},
+{q:"死球時利用幾秒違例？",a:"B"},
+{q:"進攻籃板後時間歸幾秒？",a:"D"},
+{q:"上半場每隊幾次暫停？",a:"B"},
+{q:"下半場每隊幾次暫停？",a:"C"},
+{q:"活球控制後幾秒內投籃？",a:"A"},
+{q:"3 對 3 比賽幾秒內投籃？",a:"A"},
+{q:"3 對 3 比賽幾秒內投籃？",a:"A"},
+{q:"排球發球需在幾秒內？",a:"B"},
+{q:"排球發球規則正確？",a:"A"},
+{q:"高手傳球手型？",a:"A"},
+{q:"排球源自哪種運動？",a:"A"},
+{q:"臺灣排球萌芽於？",a:"A"},
+{q:"排球場尺寸？",a:"C"},
+{q:"高中排球上場人數？",a:"C"},
+{q:"排球唯一不受影響攻擊？",a:"A"},
+{q:"漂浮發球擊球位置？",a:"B"},
+{q:"標誌竿長度？",a:"C"},
+{q:"接球先接住再擊出屬？",a:"D"},
+{q:"羽球一局幾分？",a:"C"},
+{q:"左發球區可能分數？",a:"C"},
+{q:"29 平後先到幾分？",a:"D"},
+{q:"第三局誰先發球？",a:"C"},
+{q:"20 平需連續幾分？",a:"A"},
+{q:"羽球由哪國傳入英國？",a:"A"},
+{q:"臺灣第一位世界球后？",a:"C"},
+{q:"羽球採何種得分制？",a:"B"},
+{q:"羽球發球高度不得超過？",a:"D"},
+{q:"14 分接發球站位？",a:"B"},
+{q:"羽球比賽賽制？",a:"A"},
+{q:"可能的第一局比分？",a:"B"},
+{q:"發球瞬間球不得高於？",a:"C"}
+];
+
+let i=0,score=0;
+
+function show(){
+document.getElementById("question").innerText =
+"第 "+(i+1)+" 題（共 50 題）\n"+quiz[i].q;
+document.getElementById("count").innerText="";
+document.getElementsByName("ans").forEach(r=>r.checked=false);
+}
+
+function next(){
+let sel="";
+document.getElementsByName("ans").forEach(r=>{if(r.checked)sel=r.value;});
+if(sel===""){alert("請選答案");return;}
+if(sel===quiz[i].a)score++;
+i++;
+if(i<quiz.length){show();}
+else{
+document.querySelector(".box").innerHTML=
+"<h2>測驗結束</h2><p>得分："+score+" / 50</p>";
+}
+}
+show();
+</script>
+
+</body>
+</html>
